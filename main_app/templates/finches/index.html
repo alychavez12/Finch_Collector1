@@ -8,6 +8,7 @@
 <h1>Finch List</h1>
     
 {% for finch in finches %}
+<a href="/finches/{{ finch.id }}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ finch.name }}</span>
@@ -19,9 +20,7 @@
             <p>Age: Baby</p>
             {% endif %}
         </div>
-
     </div>
-
+</a>
 {% endfor %}
-
 {% endblock %}
