@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Toy(models.Model):
@@ -20,6 +20,7 @@ class Finch(models.Model):
     description = models.TextField(max_length=250) # text data type
     age = models.IntegerField(default=0)
     toys = models.ManyToManyField(Toy)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self): 
         return self.name

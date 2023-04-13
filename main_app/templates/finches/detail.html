@@ -44,14 +44,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for feeding in finches.feeding_set.all %}
+                {% for feeding in finch.feeding_set.all %}
                 <tr>
                     <td>{{ feeding.date }}</td>
-                    <td>{{ fedding.get_meal_display }}</td>
+                    <td>{{ feeding.get_meal_display }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        
     </div>
 </div>
 <hr>
@@ -66,12 +67,17 @@
                     <span class="card-title">A <span class="{{ toy.color.lower }}-text">{{ toy.color.capitalize }}</span> {{ toy.name }}</span>  
                 </div>
                 <div class="card-action">
+                    <form action="{% url 'unassoc_toy' finch.id toy.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Remove" class="btn blue">
+                    </form>
+                <div class="card-action">
                     <a href="{% url 'toy_detail' toy.id %}">Detail</a>
                 </div>
          </div>
        {% endfor %}
        {% else %}
-       <h5>{{ cat.name }} doesn't have any toys yet 🙀 </h5>
+       <h5>{{ finch.name }} doesn't have any toys yet 🙀 </h5>
        {% endif %}
     </div>
     <div class="col s6">
